@@ -25,8 +25,7 @@ public class UserDetailsImpl implements UserDetails{
     private String adresse;
     private String numtel;
     private String mat;
-    
-	private User user;
+    private String idCollege;
 
     @JsonIgnore
     private String password;
@@ -34,7 +33,7 @@ public class UserDetailsImpl implements UserDetails{
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDetailsImpl(String id,String username, String email, String password,
-    		String nom,String prenom,String adresse,String numtel,
+    		String nom,String prenom,String adresse,String numtel,String idCollege,
                            Collection<? extends GrantedAuthority> authorities) {
     	this.id = id;
         this.username = username;
@@ -44,11 +43,12 @@ public class UserDetailsImpl implements UserDetails{
         this.prenom = prenom;
         this.adresse = adresse;
         this.numtel = numtel;
+        this.idCollege = idCollege;
         this.authorities  = authorities ;
     }
     
     public UserDetailsImpl(String id,String username, String email, String password,
-    		String nom,String prenom,String adresse,String numtel,String mat,
+    		String nom,String prenom,String adresse,String numtel,String mat,String idCollege,
                            Collection<? extends GrantedAuthority> authorities) {
     	this.id = id;
         this.username = username;
@@ -58,6 +58,7 @@ public class UserDetailsImpl implements UserDetails{
         this.prenom = prenom;
         this.adresse = adresse;
         this.numtel = numtel;
+        this.setIdCollege(idCollege);
         this.mat = mat;
         this.authorities  = authorities ;
     }
@@ -78,6 +79,7 @@ public class UserDetailsImpl implements UserDetails{
                 user.getPrenom(),
                 user.getAdresse(),
                 user.getNumtel(),
+                user.getIdCollege(),
                 user.getMat(),
                 authorities);
     }
@@ -165,6 +167,14 @@ public class UserDetailsImpl implements UserDetails{
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getIdCollege() {
+		return idCollege;
+	}
+
+	public void setIdCollege(String idCollege) {
+		this.idCollege = idCollege;
 	}
 
     

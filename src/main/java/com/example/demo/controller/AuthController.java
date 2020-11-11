@@ -69,6 +69,7 @@ public class AuthController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+	/* ************************************************************************************** */
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -91,11 +92,13 @@ public class AuthController {
                 userDetails.getPrenom(),
                 userDetails.getAdresse(),
                 userDetails.getNumtel(),
+                userDetails.getIdCollege(),
                 userDetails.getMat(),
                 roles
                 ));
-		
 	}
+	
+	/* *************************************************************************************** */
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
@@ -119,7 +122,8 @@ public class AuthController {
                 signUpRequest.getNom(),
                 signUpRequest.getPrenom(),
                 signUpRequest.getAdresse(),
-                signUpRequest.getNumtel()
+                signUpRequest.getNumtel(),
+                signUpRequest.getIdCollege()
                 );
 		
 		String mat = signUpRequest.getMat();
@@ -173,6 +177,8 @@ public class AuthController {
 
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 	}
+	
+	/* ************************************************************************************** */
 	
 	@PostMapping("/logout")
 	@PreAuthorize("hasRole('PARENT') or hasRole('PROFESSEUR')  or hasRole('SERVEUILLANTE')   or hasRole('SERVEUILLANTE_GENERALE')  or hasRole('SECRETARIA')")

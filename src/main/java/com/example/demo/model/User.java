@@ -50,6 +50,9 @@ public class User {
     @Size(min = 8, max = 8)
     private String numtel;
     
+    @NotBlank
+    @Size(max = 20)
+    private String idCollege;
 
 	@DBRef
     private Set<Role> roles = new HashSet<>();
@@ -62,8 +65,8 @@ public class User {
 	 public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
 				@NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 50) String nom,
 				@NotBlank @Size(max = 50) String prenom, @NotBlank @Size(max = 50) String adresse,
-				@NotBlank @Size(min = 8,max = 8) String numtel) {
-			super();
+				@NotBlank @Size(max = 8) String numtel,String idCollege
+				) {
 			this.username = username;
 			this.email = email;
 			this.password = password;
@@ -71,12 +74,14 @@ public class User {
 			this.prenom = prenom;
 			this.adresse = adresse;
 			this.numtel = numtel;
+			this.idCollege = idCollege;
 		}
-	
-	 public User( @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+	 
+	 public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
 				@NotBlank @Size(max = 120) String password, @NotBlank @Size(max = 50) String nom,
 				@NotBlank @Size(max = 50) String prenom, @NotBlank @Size(max = 50) String adresse,
-				@NotBlank @Size(max = 20) String numtel,@NotBlank @Size(max = 120) String mat) {
+				@NotBlank @Size(max = 8) String numtel,String idCollege,String mat
+				) {
 			this.username = username;
 			this.email = email;
 			this.password = password;
@@ -84,6 +89,7 @@ public class User {
 			this.prenom = prenom;
 			this.adresse = adresse;
 			this.numtel = numtel;
+			this.idCollege = idCollege;
 			this.mat = mat;
 		}
 	 
@@ -142,6 +148,16 @@ public class User {
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+	
+	
+
+	public String getIdCollege() {
+		return idCollege;
+	}
+
+	public void setIdCollege(String idCollege) {
+		this.idCollege = idCollege;
 	}
 
 	public String getNumtel() {

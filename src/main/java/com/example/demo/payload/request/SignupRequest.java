@@ -32,6 +32,10 @@ public class SignupRequest {
     private String numtel;
     
     @NotBlank
+    @Size(max = 20)
+    private String idCollege;
+    
+    @NotBlank
     @Size(max = 50)
     private String mat;
 
@@ -99,7 +103,15 @@ public class SignupRequest {
 		this.numtel = numtel;
 	}
 	
-    public String getMat() {
+    public String getIdCollege() {
+		return idCollege;
+	}
+
+	public void setIdCollege(String idCollege) {
+		this.idCollege = idCollege;
+	}
+
+	public String getMat() {
 		return mat;
 	}
 

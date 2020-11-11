@@ -12,11 +12,12 @@ public class JwtResponse {
     private String adresse;
     private String numtel;
     private String mat;
+    private String idCollege;
 	private List<String> roles;
 
 
 	public JwtResponse(String accessToken, String id, String username, String email, String nom, String prenom,
-			String adresse, String numtel,String mat, List<String> roles) {
+			String adresse, String numtel,String idCollege,String mat, List<String> roles) {
 		this.token = accessToken;
 		this.id = id;
 		this.username = username;
@@ -26,6 +27,7 @@ public class JwtResponse {
 		this.adresse = adresse;
 		this.numtel = numtel;
 		this.mat = mat;
+		this.idCollege = idCollege;
 		this.roles = roles;
 	}
 
@@ -112,5 +114,13 @@ public class JwtResponse {
 
 	public void setMat(String mat) {
 		this.mat = mat;
+	}
+
+	public String getIdCollege() {
+		return idCollege;
+	}
+
+	public void setIdCollege(String idCollege) {
+		this.idCollege = idCollege;
 	}
 }

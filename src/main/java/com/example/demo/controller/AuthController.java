@@ -83,12 +83,17 @@ public class AuthController {
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 		
-		return ResponseEntity.ok(new JwtResponse(jwt, 
-				 userDetails.getId(), 
-				 userDetails.getUsername(), 
-				 userDetails.getEmail(),
-				 userDetails.getMat(),
-				 roles));
+		return ResponseEntity.ok(new JwtResponse(jwt,
+				userDetails.getId(),
+                userDetails.getUsername(),
+                userDetails.getEmail(),
+                userDetails.getNom(),
+                userDetails.getPrenom(),
+                userDetails.getAdresse(),
+                userDetails.getNumtel(),
+                userDetails.getMat(),
+                roles
+                ));
 		
 	}
 
@@ -107,9 +112,15 @@ public class AuthController {
 		}
 
 		// Create new user's account
-		User user = new User(signUpRequest.getUsername(), 
-							 signUpRequest.getEmail(),
-							 encoder.encode(signUpRequest.getPassword()));
+        User user = new User(
+        		signUpRequest.getUsername(),
+                signUpRequest.getEmail(),
+                encoder.encode(signUpRequest.getPassword()),
+                signUpRequest.getNom(),
+                signUpRequest.getPrenom(),
+                signUpRequest.getAdresse(),
+                signUpRequest.getNumtel()
+                );
 		
 		String mat = signUpRequest.getMat();
 
@@ -121,32 +132,32 @@ public class AuthController {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "professeur":
-					Role parentRole = roleRepository.findByName(ERole.PROFESSEUR)
+					Role parentRole = roleRepository.findByName(ERole.ROLE_PROFESSEUR)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(parentRole);
 					user.setMat(mat);
 
 					break;
 				case "parent":
-					Role ParentRole = roleRepository.findByName(ERole.PARENT)
+					Role ParentRole = roleRepository.findByName(ERole.ROLE_PARENT)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(ParentRole);
 
 					break;
 				case "serveillante":
-					Role serveillanteRole = roleRepository.findByName(ERole.SERVEUILLANTE)
+					Role serveillanteRole = roleRepository.findByName(ERole.ROLE_SERVEUILLANTE)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(serveillanteRole);
 
 					break;
 				case "generale":
-					Role serveillante_generaleRole = roleRepository.findByName(ERole.SERVEUILLANTE_GENERALE)
+					Role serveillante_generaleRole = roleRepository.findByName(ERole.ROLE_SERVEUILLANTE_GENERALE)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(serveillante_generaleRole);
 
 					break;
 				case "secretaria":
-					Role secretariaRole = roleRepository.findByName(ERole.SECRETARIA)
+					Role secretariaRole = roleRepository.findByName(ERole.ROLE_SECRETARIA)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(secretariaRole);
 
